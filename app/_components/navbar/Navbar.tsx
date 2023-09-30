@@ -1,10 +1,14 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <div className="grid grid-cols-4 h-16 border-b-2 px-4">
       <div className="my-auto col-span-2">
-        <p className="text-2xl font-bold text-teal-500 hover:text-teal-600 active:text-teal-700 cursor-pointer w-2">
-          BLOGGG
-        </p>
+        <Link href={"/"}>
+          <p className="text-2xl font-bold text-teal-500 hover:text-teal-600 active:text-teal-700 cursor-pointer w-2">
+            BLOGGG
+          </p>
+        </Link>
       </div>
       <div className="flex justify-end items-center">
         <p className="text-md font-semibold text-slate-500 hover:text-teal-300 active:text-slate-700 cursor-pointer">

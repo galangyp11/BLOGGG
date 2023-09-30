@@ -2,10 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { apiHost } from "@/app/_api/api";
 import FotoPP from "../../../Image/foto-profile2.jpg";
 import FotoPP2 from "../../../Image/doggo.jpg";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
+import Link from "next/link";
 
 // import { userModel, userProps } from "@/app/(SSR)/models/userModel";
 // import { InferGetStaticPropsType, GetStaticProps } from "next";
@@ -25,7 +27,7 @@ export default function CardPost() {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios.get("http://localhost:3011/users");
+      const response = await axios.get(`${apiHost}/users`);
       setDataPost(response.data);
     };
     getData();
@@ -65,10 +67,12 @@ export default function CardPost() {
             <p>{data.isi}</p>
           </div>
           <div className="flex justify-end mt-2">
-            <div className="border-2 rounded-md p-2 w-40 flex items-center group hover:border-gray-500 cursor-pointer">
-              <p className="mr-2">Selengkapnya</p>
-              <BsArrowRight className="group-hover:translate-x-2 duration-300" />
-            </div>
+            <Link href={{ pathname: `/post/${data.slug}`, query: { data } }}>
+              <div className="border-2 rounded-md p-2 w-40 flex items-center group hover:border-gray-500 cursor-pointer">
+                <p className="mr-2">Selengkapnya</p>
+                <BsArrowRight className="group-hover:translate-x-2 duration-300" />
+              </div>
+            </Link>
           </div>
         </div>
       ))}
